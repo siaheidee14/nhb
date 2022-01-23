@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css"
+        integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;500;700&family=Inter:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>7DFS-Simple</title>
+</head>
+
+<body>
+    <!--HEADER section-->
+    <section class="topbar">
+        <div class="container d-flex justify-content-center align-items-center">
+            <div class="header-info">
+                <a href="#" class="btn btn-white btn-register">Register Now</a>
+            </div>
+            <span class="desc">Happy birthday, App Framework! How to build integrations with Contentful</span>
+        </div>
+    </section>
+    <header class="navbar-wrapper">
+        <!-- Topnav-->
+        <div class="container top-nav d-flex justify-content-between align-items-center flex-wrap">
+            <a href="#" class="logo">
+                <h1 class="name text-uppercase">Nothing Held Back<span class="plus">+</span></h1>
+            </a>
+            <div class="search d-flex align-items-center">
+                <svg class="icon-search" width="12" height="14" viewBox="0 0 12 14" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M5.24712 2.4667C3.23485 2.4667 1.60359 4.23104 1.60359 6.40747C1.60359 8.58389 3.23485 10.3482 5.24712 10.3482C7.25938 10.3482 8.89065 8.58389 8.89065 6.40747C8.89065 4.23104 7.25938 2.4667 5.24712 2.4667ZM0.124268 6.40747C0.124268 3.34738 2.41785 0.866699 5.24712 0.866699C8.07639 0.866699 10.37 3.34738 10.37 6.40747C10.37 9.46755 8.07639 11.9482 5.24712 11.9482C2.41785 11.9482 0.124268 9.46755 0.124268 6.40747Z"
+                        fill="#09204F" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M7.81979 9.18988C8.10865 8.87746 8.57697 8.87746 8.86583 9.18988L11.2492 11.7677C11.538 12.0801 11.538 12.5866 11.2492 12.899C10.9603 13.2115 10.492 13.2115 10.2032 12.899L7.81979 10.3213C7.53094 10.0088 7.53094 9.5023 7.81979 9.18988Z"
+                        fill="#09204F" />
+                </svg>
+                <input type="text" class="form-control bar">
+            </div>
+            <div class="d-flex align-items-center justify-content-between detail">
+                <div class="d-flex links">
+                    <div class="buttons d-flex">
+                        <a href="#" class="btn btn-outline-blue btn-hiring">We're hiring!</a>
+                        <a href="#" class="btn btn-yellow btn-help">Need help?</a>
+                    </div>
+                    <div class="icons">
+                        <a href="#" data-tooltip="Search">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M14 18V2H2V17C2 17.2652 2.10536 17.5196 2.29289 17.7071C2.48043 17.8946 2.73478 18 3 18H14ZM17 20H3C2.20435 20 1.44129 19.6839 0.87868 19.1213C0.316071 18.5587 0 17.7956 0 17V1C0 0.734784 0.105357 0.48043 0.292893 0.292893C0.48043 0.105357 0.734784 0 1 0H15C15.2652 0 15.5196 0.105357 15.7071 0.292893C15.8946 0.48043 16 0.734784 16 1V8H20V17C20 17.7956 19.6839 18.5587 19.1213 19.1213C18.5587 19.6839 17.7956 20 17 20ZM16 10V17C16 17.2652 16.1054 17.5196 16.2929 17.7071C16.4804 17.8946 16.7348 18 17 18C17.2652 18 17.5196 17.8946 17.7071 17.7071C17.8946 17.5196 18 17.2652 18 17V10H16ZM4 4H10V10H4V4ZM6 6V8H8V6H6ZM4 11H12V13H4V11ZM4 14H12V16H4V14Z"
+                                    fill="#07080A" />
+                            </svg>
+                        </a>
+                        <a href="#" data-tooltip="Search">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M15 2H19C19.2652 2 19.5196 2.10536 19.7071 2.29289C19.8946 2.48043 20 2.73478 20 3V19C20 19.2652 19.8946 19.5196 19.7071 19.7071C19.5196 19.8946 19.2652 20 19 20H1C0.734784 20 0.48043 19.8946 0.292893 19.7071C0.105357 19.5196 0 19.2652 0 19V3C0 2.73478 0.105357 2.48043 0.292893 2.29289C0.48043 2.10536 0.734784 2 1 2H5V0H7V2H13V0H15V2ZM18 10H2V18H18V10ZM13 4H7V6H5V4H2V8H18V4H15V6H13V4ZM4 12H6V14H4V12ZM9 12H11V14H9V12ZM14 12H16V14H14V12Z"
+                                    fill="#07080A" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>  
+                <div class="account d-flex">
+                    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarList"
+                        aria-controls="navbarList" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    
+                    <div class="profile">
+                        <span class="text">Welcome Back,</span>
+                        <a href="#" class="dropdown-toggle font-weight-bold link" data-toggle="dropdown">Alen<b
+                                class="caret"></b></a>
+                        <a href="#">
+                            <img src="./images/user-image.png" alt="Alen" class="rounded-circle">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mainnav-->
+        <div class="container main-nav w-100">
+            <nav class="navbar navbar-expand-lg p-0">
+                <div class="collapse navbar-collapse" id="navbarList">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 w-100 align-items-center justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#" aria-expanded="false">Today NHB</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-expanded="true">
+                                My Programs 
+                                <i class="fa fa-chevron-up"></i>
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-expanded="false">Traning Calls</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-expanded="false">The Roledex</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-expanded="false">Resources</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-expanded="false">Integration Network</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" aria-expanded="false">
+                                Swipes 
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-expanded="false">Job Board</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-expanded="false">The Community</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>        
+    <!--Main content-->
+    <section class="main-content container">
+        <div class="row">
+            <div class="col-md-4">
+                <!--Fast start section-->
+                <div id="faststart" class="faststart border-wrapper">
+                    <a class="title d-flex align-items-center justify-content-between text-center" href="#faststartContent" data-bs-toggle="collapse" aria-expanded="false">
+                        7-Day Fast Start <i class="fa fa-chevron-down"></i>
+                    </a>
+                    <div id="faststartContent" class="collapse show" data-bs-parent="#faststart">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20"
+                                aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <span class="d-flex justify-content-center progress-detail">20% Complete</span>
+                        <ul class="daylist">
+                            <li class="active">
+                                Day 1 | 7-Figure Math + AC Formula 
+                                <i class="fa fa-bold fa-circle"></i></li>
+                            <li>
+                                <i class="fa fa-bold fa-chevron-right"></i> 
+                                Day 2 | Pick a market
+                            </li>
+                            <li>
+                                <i class="fa fa-bold fa-chevron-right"></i>
+                                Day 3 | Your superpower
+                            </li>
+                            <li>
+                                <i class="fa fa-bold fa-chevron-right"></i>
+                                Day 4 | Your disruptive idea</li>
+                            <li>
+                                <i class="fa fa-bold fa-chevron-right"></i>
+                                Day 5 | Front end sales funnel
+                            </li>
+                            <li>
+                                <i class="fa fa-bold fa-chevron-right"></i>
+                                Day 6 | Back end sales funnel
+                            </li>
+                            <li><i class="fa fa-bold fa-chevron-right"></i>
+                                Day 7 | Scaling your offer
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Need help section-->
+                <div class="needhelp border-wrapper d-flex justify-content-center flex-column align-items-center">
+                    <span class="title">Need Help?</span>
+                    <div class="userimage">
+                        <img src="./images/img.png" class="rounded-circle" alt="">
+                        <span class="notification d-flex justify-content-center align-items-center">
+                            <i class="fa fa-comment-dots"></i>
+                        </span>
+                    </div>
+                    <span class="status">
+                        <i class="fa fa-circle"></i>
+                        Available
+                    </span>
+                    <span class="name">Alen Sulfuric</span>
+                    <span class="info">Motivational Speaker & Influence Expert</span>
+                    <a href="#" class="btn btn-green btn-chat">
+                        <i class="fa fa-comment-dots"></i> 
+                        Chat With Us
+                    </a>
+                    <span class="text">
+                        Or Call Us at 
+                        <a href="tel:" class="text-link">+1 (800) 444 2041</a>
+                    </span>
+                </div>
+                <!--NHB Sales section-->
+                <div class="nhb-sales border-wrapper">
+                    <span class="logo">
+                        <span class="name">NHB</span>
+                        <span class="plus">+</span>
+                    </span>
+                    <span class="title">Want Our Help Getting
+                        100+ Sales Per Day?</span>
+                    <ul class="getting-sales-list">
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            What you get when you join
+                        </li>
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            Weekly group coaching calls with us
+                        </li>
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            Entire Automatic Clients course
+                        </li>
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            All templates, scripts, sales funnels, etc
+                        </li>
+                        <li>
+                            <i class="fa fa-check-circle"></i>
+                            Emails & SMS sequences, etc
+                        </li>
+                    </ul>
+                    <a href="#" class="btn btn-lightblue btn-join">Apply to Join Now</a>
+                    <span class="text-center text">Price Increase soon.</span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <h2 class="main-title">Hey Alen, Welcome to your 7-Day Fast Start</h2>
+                <div class="embed-responsive embed-responsive-16by9 video-iframe">
+                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/zB4I68XVPzQ" allowfullscreen></iframe>
+                </div>
+                <!--Learning heading-->
+                <div class="learning-heading">
+                    <div class="data d-flex justify-content-between">
+                        <span class="title">PUBG Mobile x Godzilla vs. Kong Trailer - Official Trailer</span>
+                        <div class="videolink">
+                            <a href="#" class="btn btn-outline-lightblue btn-download">Download Video</a>
+                            <div class="file-info">
+                                <span>File Format: MP4</span> | <span>File Size: 852 MB</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="views">
+                        <span>13,741 views</span>
+                        <i class="fa fa-circle"></i>
+                        <span>May 11, 2021</span>
+                    </div>
+                </div>
+                <!--Learning Info-->
+                <div class="learning-info">
+                    <div class="data d-flex justify-content-between">
+                        <div class="coach d-flex flex-wrap flex-column">
+                            <span class="name">Alen Sultanic <i class="fa fa-check-circle"></i></span>
+                            <span class="detail">Nothing Held Back Coach</span>
+                        </div>
+                        <div class="d-flex training-schedule">
+                            <span class="text-uppercase info"><span class="font-weight-bold">Call Type:</span>
+                                Expert Training</span>
+                            <span class="text-uppercase info"><span class="font-weight-bold">Date of Call:</span>
+                                May 12th, 2021</span>
+                            <span class="text-uppercase info"><span class="font-weight-bold">Time of Call:</span>
+                                11:00 a.m. EST</span>
+                        </div>
+                    </div>
+                    <p class="text">Godzilla, Kong, and Mechagodzilla arrive in PUBG Mobile's version 1.4 update
+                        which also brings microcosm gameplay, a new vehicle, Hangar which is new arena map available
+                        beginning June 1, and more. Check out the trailer. Godzilla, Kong and Mechagodzilla join the
+                        Battle Royale as non-hostile characters that may bring Titan Crystals, destroy Apex
+                        Cybernetics and Monster Settlements and drop enhancement items in the Erangel, Sanhok and
+                        Livk maps respectively. The Version 1.4 update is available now.</p>
+                    <a class="showmore-link" href="#">Show more...</a>
+                    <div class="buttons">
+                    <a href="#" class="btn btn-lightblue btn-nextcall">Sign up for the next
+                            call</a>
+                        <a href="#" class="text-lesson">Go to Next Lesson <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <!--Comments section-->
+                <div class="comments">
+                    <div class="detail">
+                        <span class="total">334 Comments</span>
+                        <a class="sort-by">
+                            <svg width="18" height="13" viewBox="0 0 18 13" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M0 12.5005H6V10.5005H0V12.5005ZM0 0.500488V2.50049H18V0.500488H0ZM0 7.50049H12V5.50049H0V7.50049Z"
+                                    fill="black" />
+                            </svg>
+                            Sort By
+                        </a>
+                    </div>
+                    <div class="write-comment d-flex justify-content-between align-items-center">
+                        <div class="image">
+                            <img src="./images/comment-user.png" alt="Name">
+                        </div>
+                        <div contenteditable="true" class="editor">Add a public comment...</div>
+                    </div>
+                    <div class="list-comments">
+                        <div class="comment-wrapper d-flex">
+                            <img src="./images/comment-user1.png" class="user-image" alt="Name">
+                            <div class="comment-info">
+                                <span class="name">Mike_Fails_at_games</span>
+                                <span class="posted">1 hour ago</span>
+                                <p class="desc">At this rate why not have Kong and Godzilla show up as MK11 dlc</p>
+                                <div class="d-flex align-items-center">
+                                    <a class="like" href="#">
+                                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M0.666626 13.5004H3.33329V5.50045H0.666626V13.5004ZM15.3333 6.16711C15.3333 5.43378 14.7333 4.83378 14 4.83378H9.79329L10.4266 1.78711L10.4466 1.57378C10.4466 1.30045 10.3333 1.04711 10.1533 0.867114L9.44663 0.167114L5.05996 4.56045C4.81329 4.80045 4.66663 5.13378 4.66663 5.50045V12.1671C4.66663 12.9004 5.26663 13.5004 5.99996 13.5004H12C12.5533 13.5004 13.0266 13.1671 13.2266 12.6871L15.24 7.98711C15.3 7.83378 15.3333 7.67378 15.3333 7.50045V6.22711L15.3266 6.22045L15.3333 6.16711Z"
+                                                fill="black" />
+                                        </svg>
+                                        496
+                                    </a>
+                                    <a class="dislike" href="#">
+                                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.99996 0.500488H3.99996C3.44663 0.500488 2.97329 0.833821 2.77329 1.31382L0.759959 6.01382C0.699959 6.16715 0.666626 6.32715 0.666626 6.50049V7.77382L0.673293 7.78049L0.666626 7.83382C0.666626 8.56715 1.26663 9.16715 1.99996 9.16715H6.20663L5.57329 12.2138L5.55329 12.4272C5.55329 12.7005 5.66663 12.9538 5.84663 13.1338L6.55329 13.8338L10.9466 9.44049C11.1866 9.20049 11.3333 8.86715 11.3333 8.50049V1.83382C11.3333 1.10049 10.7333 0.500488 9.99996 0.500488ZM12.6666 0.500488V8.50049H15.3333V0.500488H12.6666Z"
+                                                fill="black" />
+                                        </svg>
+                                    </a>
+                                    <a class="link-reply text-uppercase" href="#">Reply</a>
+                                </div>
+                                <a class="view-reply" href="#">
+                                    <i class="fas fa-caret-down"></i>
+                                    View 17 replies
+                                </a>
+                            </div>
+                        </div>
+                        <div class="comment-wrapper d-flex">
+                            <img src="./images/comment-user2.png" class="user-image" alt="Name">
+                            <div class="comment-info">
+                                <span class="name">ShadowXBlaster</span>
+                                <span class="posted">1 hour ago</span>
+                                <p class="desc">A game which is a great example of "Nothing like what was shown".
+                                    Perfect.....</p>
+                                <div class="d-flex align-items-center">
+                                    <a class="like" href="#">
+                                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M0.666626 13.5004H3.33329V5.50045H0.666626V13.5004ZM15.3333 6.16711C15.3333 5.43378 14.7333 4.83378 14 4.83378H9.79329L10.4266 1.78711L10.4466 1.57378C10.4466 1.30045 10.3333 1.04711 10.1533 0.867114L9.44663 0.167114L5.05996 4.56045C4.81329 4.80045 4.66663 5.13378 4.66663 5.50045V12.1671C4.66663 12.9004 5.26663 13.5004 5.99996 13.5004H12C12.5533 13.5004 13.0266 13.1671 13.2266 12.6871L15.24 7.98711C15.3 7.83378 15.3333 7.67378 15.3333 7.50045V6.22711L15.3266 6.22045L15.3333 6.16711Z"
+                                                fill="black" />
+                                        </svg>
+                                        242
+                                    </a>
+                                    <a class="dislike" href="#">
+                                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.99996 0.500488H3.99996C3.44663 0.500488 2.97329 0.833821 2.77329 1.31382L0.759959 6.01382C0.699959 6.16715 0.666626 6.32715 0.666626 6.50049V7.77382L0.673293 7.78049L0.666626 7.83382C0.666626 8.56715 1.26663 9.16715 1.99996 9.16715H6.20663L5.57329 12.2138L5.55329 12.4272C5.55329 12.7005 5.66663 12.9538 5.84663 13.1338L6.55329 13.8338L10.9466 9.44049C11.1866 9.20049 11.3333 8.86715 11.3333 8.50049V1.83382C11.3333 1.10049 10.7333 0.500488 9.99996 0.500488ZM12.6666 0.500488V8.50049H15.3333V0.500488H12.6666Z"
+                                                fill="black" />
+                                        </svg>
+                                    </a>
+                                    <a class="link-reply text-uppercase" href="#">Reply</a>
+                                </div>
+                                <a class="view-reply" href="#!">
+                                    <i class="fas fa-caret-down"></i>
+                                    View 8 replies
+                                </a>
+                            </div>
+                        </div>
+                        <div class="comment-wrapper d-flex">
+                            <img src="./images/comment-user3.png" class="user-image" alt="Name">
+                            <div class="comment-info">
+                                <span class="name">NyX</span>
+                                <span class="posted">1 hour ago</span>
+                                <p class="desc">Someone just make a Monster Fighting Game and give us Godzilla vs
+                                    Kong in Game Form</p>
+                                <div class="d-flex align-items-center">
+                                    <a class="like" href="#">
+                                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M0.666626 13.5004H3.33329V5.50045H0.666626V13.5004ZM15.3333 6.16711C15.3333 5.43378 14.7333 4.83378 14 4.83378H9.79329L10.4266 1.78711L10.4466 1.57378C10.4466 1.30045 10.3333 1.04711 10.1533 0.867114L9.44663 0.167114L5.05996 4.56045C4.81329 4.80045 4.66663 5.13378 4.66663 5.50045V12.1671C4.66663 12.9004 5.26663 13.5004 5.99996 13.5004H12C12.5533 13.5004 13.0266 13.1671 13.2266 12.6871L15.24 7.98711C15.3 7.83378 15.3333 7.67378 15.3333 7.50045V6.22711L15.3266 6.22045L15.3333 6.16711Z"
+                                                fill="black" />
+                                        </svg>
+                                        180
+                                    </a>
+                                    <a class="dislike" href="#">
+                                        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M9.99996 0.500488H3.99996C3.44663 0.500488 2.97329 0.833821 2.77329 1.31382L0.759959 6.01382C0.699959 6.16715 0.666626 6.32715 0.666626 6.50049V7.77382L0.673293 7.78049L0.666626 7.83382C0.666626 8.56715 1.26663 9.16715 1.99996 9.16715H6.20663L5.57329 12.2138L5.55329 12.4272C5.55329 12.7005 5.66663 12.9538 5.84663 13.1338L6.55329 13.8338L10.9466 9.44049C11.1866 9.20049 11.3333 8.86715 11.3333 8.50049V1.83382C11.3333 1.10049 10.7333 0.500488 9.99996 0.500488ZM12.6666 0.500488V8.50049H15.3333V0.500488H12.6666Z"
+                                                fill="black" />
+                                        </svg>
+                                    </a>
+                                    <a class="link-reply text-uppercase" href="#">Reply</a>
+                                </div>
+                                <a class="view-reply" href="#!">
+                                    <i class="fas fa-caret-down"></i>
+                                    View 12 replies
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Download Resources-->
+                <div class="download-resources">
+                    <div class="title">Download Resources</div>
+                    <p class="description">Here are a must do step by step to kickstart your business!</p>
+                    <ul class="download-list border-wrapper">
+                        <li>
+                            <div class="filename">
+                                <svg focusable="false" width="24" height="29" viewBox="0 0 24 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0.75 5.75037C0.75 2.98894 2.98858 0.750366 5.75 0.750366H16.1789C17.505 0.750366 18.7768 1.27715 19.7145 2.21483L21.7855 4.2859C22.7232 5.22358 23.25 6.49535 23.25 7.82143V23.2504C23.25 26.0118 21.0114 28.2504 18.25 28.2504H5.75C2.98858 28.2504 0.75 26.0118 0.75 23.2504V5.75037ZM20.75 9.50037V23.2504C20.75 24.6311 19.6307 25.7504 18.25 25.7504H5.75C4.36929 25.7504 3.25 24.6311 3.25 23.2504V5.75037C3.25 4.36965 4.36929 3.25037 5.75 3.25037H14.5V5.75037C14.5 7.82143 16.1789 9.50037 18.25 9.50037H20.75ZM20.6113 7.00037C20.4886 6.64736 20.2871 6.32296 20.0178 6.05367L17.9467 3.9826C17.6774 3.71331 17.353 3.51179 17 3.38904V5.75037C17 6.44072 17.5596 7.00037 18.25 7.00037H20.6113Z"
+                                        fill="#12131A" />
+                                    <path
+                                        d="M8.25024 14.5004C7.55989 14.5004 7.00024 15.06 7.00024 15.7504C7.00024 16.4407 7.55989 17.0004 8.25024 17.0004H15.7502C16.4406 17.0004 17.0002 16.4407 17.0002 15.7504C17.0002 15.06 16.4406 14.5004 15.7502 14.5004H8.25024Z"
+                                        fill="#12131A" />
+                                    <path
+                                        d="M8.25024 19.5004C7.55989 19.5004 7.00024 20.06 7.00024 20.7504C7.00024 21.4407 7.55989 22.0004 8.25024 22.0004H12.0002C12.6906 22.0004 13.2502 21.4407 13.2502 20.7504C13.2502 20.06 12.6906 19.5004 12.0002 19.5004H8.25024Z"
+                                        fill="#12131A" />
+                                </svg>
+                                <span class="title">VSL Draft Template Excercise.pdf</span>
+                            </div>
+                            <a href="download" class="btn btn-lightblue btn-icon-download text-capitalize">
+                                <svg focusable="false" width="19" height="21" viewBox="0 0 19 21" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0.508545 18.8998C0.508545 18.5815 0.643939 18.2763 0.884942 18.0513C1.12595 17.8262 1.45282 17.6998 1.79365 17.6998H17.2149C17.5557 17.6998 17.8826 17.8262 18.1236 18.0513C18.3646 18.2763 18.5 18.5815 18.5 18.8998C18.5 19.218 18.3646 19.5233 18.1236 19.7483C17.8826 19.9734 17.5557 20.0998 17.2149 20.0998H1.79365C1.45282 20.0998 1.12595 19.9734 0.884942 19.7483C0.643939 19.5233 0.508545 19.218 0.508545 18.8998ZM4.74038 9.65138C4.98137 9.42642 5.30818 9.30004 5.64895 9.30004C5.98971 9.30004 6.31652 9.42642 6.55751 9.65138L8.21915 11.203V2.09978C8.21915 1.78152 8.35454 1.4763 8.59555 1.25125C8.83655 1.02621 9.16342 0.89978 9.50425 0.89978C9.84508 0.89978 10.1719 1.02621 10.413 1.25125C10.654 1.4763 10.7893 1.78152 10.7893 2.09978V11.203L12.451 9.65138C12.5695 9.53677 12.7113 9.44535 12.8681 9.38246C13.0249 9.31957 13.1935 9.28646 13.3642 9.28508C13.5348 9.2837 13.704 9.31406 13.862 9.3744C14.0199 9.43473 14.1634 9.52384 14.284 9.63651C14.4047 9.74918 14.5001 9.88316 14.5647 10.0306C14.6294 10.1781 14.6619 10.3361 14.6604 10.4955C14.6589 10.6548 14.6235 10.8123 14.5561 10.9587C14.4888 11.1051 14.3909 11.2375 14.2681 11.3482L10.4128 14.9482C10.1718 15.1731 9.84501 15.2995 9.50425 15.2995C9.16349 15.2995 8.83667 15.1731 8.59568 14.9482L4.74038 11.3482C4.49946 11.1231 4.36412 10.818 4.36412 10.4998C4.36412 10.1816 4.49946 9.87641 4.74038 9.65138Z"
+                                        fill="white" />
+                                </svg>
+                                Download
+                            </a>
+                        </li>
+                        <li>
+                            <div class="filename">
+                                <svg focusable="false" width="24" height="29" viewBox="0 0 24 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0.75 5.75037C0.75 2.98894 2.98858 0.750366 5.75 0.750366H16.1789C17.505 0.750366 18.7768 1.27715 19.7145 2.21483L21.7855 4.2859C22.7232 5.22358 23.25 6.49535 23.25 7.82143V23.2504C23.25 26.0118 21.0114 28.2504 18.25 28.2504H5.75C2.98858 28.2504 0.75 26.0118 0.75 23.2504V5.75037ZM20.75 9.50037V23.2504C20.75 24.6311 19.6307 25.7504 18.25 25.7504H5.75C4.36929 25.7504 3.25 24.6311 3.25 23.2504V5.75037C3.25 4.36965 4.36929 3.25037 5.75 3.25037H14.5V5.75037C14.5 7.82143 16.1789 9.50037 18.25 9.50037H20.75ZM20.6113 7.00037C20.4886 6.64736 20.2871 6.32296 20.0178 6.05367L17.9467 3.9826C17.6774 3.71331 17.353 3.51179 17 3.38904V5.75037C17 6.44072 17.5596 7.00037 18.25 7.00037H20.6113Z"
+                                        fill="#12131A" />
+                                    <path
+                                        d="M8.25024 14.5004C7.55989 14.5004 7.00024 15.06 7.00024 15.7504C7.00024 16.4407 7.55989 17.0004 8.25024 17.0004H15.7502C16.4406 17.0004 17.0002 16.4407 17.0002 15.7504C17.0002 15.06 16.4406 14.5004 15.7502 14.5004H8.25024Z"
+                                        fill="#12131A" />
+                                    <path
+                                        d="M8.25024 19.5004C7.55989 19.5004 7.00024 20.06 7.00024 20.7504C7.00024 21.4407 7.55989 22.0004 8.25024 22.0004H12.0002C12.6906 22.0004 13.2502 21.4407 13.2502 20.7504C13.2502 20.06 12.6906 19.5004 12.0002 19.5004H8.25024Z"
+                                        fill="#12131A" />
+                                </svg>
+                                <span class="title">2,498 Niches Spreadsheet.xls</span>
+                            </div>
+                            <a href="download" class="btn btn-lightblue btn-icon-download text-capitalize">
+                                <svg focusable="false" width="19" height="21" viewBox="0 0 19 21" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0.508545 18.8998C0.508545 18.5815 0.643939 18.2763 0.884942 18.0513C1.12595 17.8262 1.45282 17.6998 1.79365 17.6998H17.2149C17.5557 17.6998 17.8826 17.8262 18.1236 18.0513C18.3646 18.2763 18.5 18.5815 18.5 18.8998C18.5 19.218 18.3646 19.5233 18.1236 19.7483C17.8826 19.9734 17.5557 20.0998 17.2149 20.0998H1.79365C1.45282 20.0998 1.12595 19.9734 0.884942 19.7483C0.643939 19.5233 0.508545 19.218 0.508545 18.8998ZM4.74038 9.65138C4.98137 9.42642 5.30818 9.30004 5.64895 9.30004C5.98971 9.30004 6.31652 9.42642 6.55751 9.65138L8.21915 11.203V2.09978C8.21915 1.78152 8.35454 1.4763 8.59555 1.25125C8.83655 1.02621 9.16342 0.89978 9.50425 0.89978C9.84508 0.89978 10.1719 1.02621 10.413 1.25125C10.654 1.4763 10.7893 1.78152 10.7893 2.09978V11.203L12.451 9.65138C12.5695 9.53677 12.7113 9.44535 12.8681 9.38246C13.0249 9.31957 13.1935 9.28646 13.3642 9.28508C13.5348 9.2837 13.704 9.31406 13.862 9.3744C14.0199 9.43473 14.1634 9.52384 14.284 9.63651C14.4047 9.74918 14.5001 9.88316 14.5647 10.0306C14.6294 10.1781 14.6619 10.3361 14.6604 10.4955C14.6589 10.6548 14.6235 10.8123 14.5561 10.9587C14.4888 11.1051 14.3909 11.2375 14.2681 11.3482L10.4128 14.9482C10.1718 15.1731 9.84501 15.2995 9.50425 15.2995C9.16349 15.2995 8.83667 15.1731 8.59568 14.9482L4.74038 11.3482C4.49946 11.1231 4.36412 10.818 4.36412 10.4998C4.36412 10.1816 4.49946 9.87641 4.74038 9.65138Z"
+                                        fill="white" />
+                                </svg>
+                                Download
+                            </a>
+                        </li>
+                        <li>
+                            <div class="filename">
+                                <svg focusable="false" width="24" height="29" viewBox="0 0 24 29" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0.75 5.75037C0.75 2.98894 2.98858 0.750366 5.75 0.750366H16.1789C17.505 0.750366 18.7768 1.27715 19.7145 2.21483L21.7855 4.2859C22.7232 5.22358 23.25 6.49535 23.25 7.82143V23.2504C23.25 26.0118 21.0114 28.2504 18.25 28.2504H5.75C2.98858 28.2504 0.75 26.0118 0.75 23.2504V5.75037ZM20.75 9.50037V23.2504C20.75 24.6311 19.6307 25.7504 18.25 25.7504H5.75C4.36929 25.7504 3.25 24.6311 3.25 23.2504V5.75037C3.25 4.36965 4.36929 3.25037 5.75 3.25037H14.5V5.75037C14.5 7.82143 16.1789 9.50037 18.25 9.50037H20.75ZM20.6113 7.00037C20.4886 6.64736 20.2871 6.32296 20.0178 6.05367L17.9467 3.9826C17.6774 3.71331 17.353 3.51179 17 3.38904V5.75037C17 6.44072 17.5596 7.00037 18.25 7.00037H20.6113Z"
+                                        fill="#12131A" />
+                                    <path
+                                        d="M8.25024 14.5004C7.55989 14.5004 7.00024 15.06 7.00024 15.7504C7.00024 16.4407 7.55989 17.0004 8.25024 17.0004H15.7502C16.4406 17.0004 17.0002 16.4407 17.0002 15.7504C17.0002 15.06 16.4406 14.5004 15.7502 14.5004H8.25024Z"
+                                        fill="#12131A" />
+                                    <path
+                                        d="M8.25024 19.5004C7.55989 19.5004 7.00024 20.06 7.00024 20.7504C7.00024 21.4407 7.55989 22.0004 8.25024 22.0004H12.0002C12.6906 22.0004 13.2502 21.4407 13.2502 20.7504C13.2502 20.06 12.6906 19.5004 12.0002 19.5004H8.25024Z"
+                                        fill="#12131A" />
+                                </svg>
+                                <span class="title">1 Million Graphics Template.zip</span>
+                            </div>
+                            <a href="download" class="btn btn-lightblue btn-icon-download text-capitalize">
+                                <svg width="19" height="21" viewBox="0 0 19 21" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M0.508545 18.8998C0.508545 18.5815 0.643939 18.2763 0.884942 18.0513C1.12595 17.8262 1.45282 17.6998 1.79365 17.6998H17.2149C17.5557 17.6998 17.8826 17.8262 18.1236 18.0513C18.3646 18.2763 18.5 18.5815 18.5 18.8998C18.5 19.218 18.3646 19.5233 18.1236 19.7483C17.8826 19.9734 17.5557 20.0998 17.2149 20.0998H1.79365C1.45282 20.0998 1.12595 19.9734 0.884942 19.7483C0.643939 19.5233 0.508545 19.218 0.508545 18.8998ZM4.74038 9.65138C4.98137 9.42642 5.30818 9.30004 5.64895 9.30004C5.98971 9.30004 6.31652 9.42642 6.55751 9.65138L8.21915 11.203V2.09978C8.21915 1.78152 8.35454 1.4763 8.59555 1.25125C8.83655 1.02621 9.16342 0.89978 9.50425 0.89978C9.84508 0.89978 10.1719 1.02621 10.413 1.25125C10.654 1.4763 10.7893 1.78152 10.7893 2.09978V11.203L12.451 9.65138C12.5695 9.53677 12.7113 9.44535 12.8681 9.38246C13.0249 9.31957 13.1935 9.28646 13.3642 9.28508C13.5348 9.2837 13.704 9.31406 13.862 9.3744C14.0199 9.43473 14.1634 9.52384 14.284 9.63651C14.4047 9.74918 14.5001 9.88316 14.5647 10.0306C14.6294 10.1781 14.6619 10.3361 14.6604 10.4955C14.6589 10.6548 14.6235 10.8123 14.5561 10.9587C14.4888 11.1051 14.3909 11.2375 14.2681 11.3482L10.4128 14.9482C10.1718 15.1731 9.84501 15.2995 9.50425 15.2995C9.16349 15.2995 8.83667 15.1731 8.59568 14.9482L4.74038 11.3482C4.49946 11.1231 4.36412 10.818 4.36412 10.4998C4.36412 10.1816 4.49946 9.87641 4.74038 9.65138Z"
+                                        fill="white" />
+                                </svg>
+                                Download
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--NHB Mastermind-->
+                <div class="nhb-mastermind">
+                    <span class="text-thin">Apply to join</span>
+                    <span class="title">The NHB Mastermind</span>
+                    <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae non
+                        sodales tristique. In blandit consequat diam enim aliquet sodales. Venenatis malesuada
+                        mauris suspendisse vel lectus. Quam tincidunt volutpat a commodo eget nec.</p>
+                    <a href="#" class="btn btn-green btn-apply text-capitalize">Click Here To Apply</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="page-footer font-small indigo">
+
+        <!-- Footer Links -->
+        <div class="footer-links container text-center text-md-left">
+
+            <!-- Grid row -->
+            <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-2 mx-auto col">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 text-heading">Today NHB</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Free Programs</a>
+                        </li>
+                        <li>
+                            <a href="#!">Newsletter</a>
+                        </li>
+                        <li>
+                            <a href="#!">Testimonials</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 mx-auto col">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 text-heading">Calendar Call</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">LTrainning Call</a>
+                        </li>
+                        <li>
+                            <a href="#!">Book a Call</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 mx-auto col">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 text-heading">My Programs</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Advance Aqcuisiton</a>
+                        </li>
+                        <li>
+                            <a href="#!">7-Days Fast Start</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 mx-auto col">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 text-heading">The Community</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">The Roledex</a>
+                        </li>
+                        <li>
+                            <a href="#!">Resource</a>
+                        </li>
+                        <li>
+                            <a href="#!">Integration Network</a>
+                        </li>
+                        <li>
+                            <a href="#!">Swipes</a>
+                        </li>
+                        <li>
+                            <a href="#!">Job Board</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 mx-auto col">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 text-heading">Profile</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!">Subscriptions</a>
+                        </li>
+                        <li>
+                            <a href="#!">Billing</a>
+                        </li>
+                        <li>
+                            <a href="#!">Documents</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+                <hr class="clearfix w-100 d-md-none">
+
+                <!-- Grid column -->
+                <div class="col-md-2 mx-auto col">
+
+                    <!-- Links -->
+                    <h5 class="font-weight-bold text-uppercase mt-3 text-heading">Support</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="link-yellow">We’re Hiring</a>
+                        </li>
+                        <li>
+                            <a href="#!">Email Us</a>
+                        </li>
+                        <li>
+                            <a href="#!">Youtube</a>
+                        </li>
+                        <li>
+                            <a href="#!">Instagram</a>
+                        </li>
+                        <li>
+                            <a href="#!">LinkedIn</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Grid row -->
+
+        </div>
+        <!-- Footer Links -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright d-flex justify-content-between container">
+            <span class="logo text-uppercase">Nothing Held Back</span>
+            <div class="links">
+                <a href="#" class="terms item">Terms</a>
+                <a href="#" class="policy item">Policy</a>
+                <div class="social-links item">
+                    <!--Facebook-->
+                    <a href="#">
+                        <svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.4 3.16629C5.366 3.16629 5.167 3.65829 5.167 4.37629V6.09229H7.5L7.18 8.58029H5.168V14.8423H2.598V8.58029H0.5V6.09229H2.597V4.13229C2.597 2.00229 3.9 0.842285 5.8 0.842285C6.71 0.842285 7.493 0.910285 7.72 0.940285V3.16629H6.4Z" fill="#919EAB"/>
+                        </svg>
+                    </a>
+                    <!--Twitter-->
+                    <a href="#">
+                        <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.86 3.58229L14.87 4.00929C14.87 8.34628 11.57 13.3433 5.536 13.3433C3.75041 13.3472 2.00167 12.8354 0.5 11.8693C0.762976 11.8984 1.02743 11.9121 1.292 11.9103C2.76864 11.9139 4.20346 11.4201 5.365 10.5083C4.6805 10.4958 4.01698 10.2699 3.46712 9.86202C2.91726 9.45415 2.50852 8.88473 2.298 8.23328C2.501 8.26329 2.704 8.28329 2.918 8.28329C3.20923 8.28231 3.49917 8.24469 3.781 8.17129C3.03809 8.02108 2.37012 7.61823 1.89066 7.03121C1.4112 6.44418 1.14983 5.70923 1.151 4.95129V4.91128C1.6056 5.16499 2.11377 5.30754 2.634 5.32729C2.18395 5.02807 1.81482 4.62228 1.55941 4.14601C1.304 3.66973 1.17023 3.13772 1.17 2.59729C1.17 1.98729 1.332 1.42929 1.617 0.942285C3.232 2.94229 5.66 4.24229 8.38 4.37429C8.32816 4.12694 8.30135 3.875 8.3 3.62229C8.3 2.75238 8.64557 1.91809 9.26069 1.30297C9.87581 0.687856 10.7101 0.342285 11.58 0.342285C12.525 0.342285 13.378 0.738285 13.977 1.37829C14.7116 1.23683 15.4161 0.96885 16.059 0.586285C15.8146 1.34448 15.3018 1.98738 14.617 2.39429C15.277 2.32429 15.917 2.14029 16.507 1.88629C16.058 2.54013 15.5018 3.11351 14.862 3.58229H14.86Z" fill="#919EAB"/>
+                        </svg>
+                    </a>
+                    <!--Instagram-->
+                    <a href="#">
+                        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.50299 4.25227C9.48999 4.25227 11.093 5.85527 11.093 7.84227C11.093 9.82927 9.49999 11.4323 7.50299 11.4323C5.50599 11.4323 3.91399 9.82927 3.91399 7.84227C3.91399 5.85527 5.51699 4.25227 7.50399 4.25227H7.50299ZM7.50299 10.1753C8.12134 10.1737 8.71394 9.92742 9.15127 9.49027C9.58861 9.05311 9.83514 8.46063 9.83699 7.84227C9.83699 6.55527 8.78999 5.50827 7.50299 5.50827C6.21599 5.50827 5.16999 6.55527 5.16999 7.84227C5.17157 8.4608 5.41798 9.05354 5.85535 9.49091C6.29272 9.92828 6.88546 10.1747 7.50399 10.1763L7.50299 10.1753ZM12.076 4.10527C12.0799 4.21756 12.0611 4.32947 12.0208 4.43435C11.9805 4.53923 11.9195 4.63493 11.8415 4.71573C11.7634 4.79654 11.6699 4.8608 11.5665 4.90469C11.463 4.94858 11.3518 4.9712 11.2395 4.9712C11.1271 4.9712 11.0159 4.94858 10.9125 4.90469C10.8091 4.8608 10.7156 4.79654 10.6375 4.71573C10.5594 4.63493 10.4984 4.53923 10.4582 4.43435C10.4179 4.32947 10.3991 4.21756 10.403 4.10527C10.4105 3.88843 10.5019 3.68296 10.658 3.53221C10.814 3.38146 11.0225 3.2972 11.2395 3.2972C11.4565 3.2972 11.665 3.38146 11.821 3.53221C11.9771 3.68296 12.0685 3.88843 12.076 4.10527ZM14.453 4.95527C14.519 6.11127 14.519 9.57227 14.453 10.7283C14.397 11.8503 14.141 12.8433 13.323 13.6613C12.505 14.4793 11.51 14.7403 10.4 14.7923C9.24399 14.8583 5.77999 14.8583 4.62399 14.7923C3.50399 14.7363 2.51199 14.4803 1.69099 13.6623C0.869988 12.8443 0.601988 11.8503 0.549988 10.7293C0.483988 9.57227 0.483988 6.10827 0.549988 4.94227C0.604988 3.83227 0.857988 2.83727 1.67999 2.01927C2.50199 1.20127 3.49499 0.944273 4.61299 0.892273C5.76999 0.826273 9.23399 0.826273 10.4 0.892273C11.522 0.948273 12.515 1.20427 13.333 2.02227C14.151 2.84027 14.411 3.83427 14.463 4.95527H14.453ZM12.96 11.9683C13.326 11.0503 13.24 8.86027 13.24 7.84127C13.24 6.82227 13.324 4.63627 12.96 3.71427C12.8413 3.41297 12.6619 3.13931 12.4329 2.91033C12.2039 2.68135 11.9303 2.50194 11.629 2.38327C10.711 2.02127 8.52099 2.10327 7.50199 2.10327C6.48299 2.10327 4.29699 2.01927 3.37499 2.38327C3.07369 2.50194 2.80003 2.68135 2.57105 2.91033C2.34206 3.13931 2.16266 3.41297 2.04399 3.71427C1.68199 4.63227 1.76399 6.82227 1.76399 7.84127C1.76399 8.86027 1.67999 11.0463 2.04399 11.9683C2.16266 12.2696 2.34206 12.5432 2.57105 12.7722C2.80003 13.0012 3.07369 13.1806 3.37499 13.2993C4.29299 13.6613 6.48299 13.5793 7.50199 13.5793C8.52099 13.5793 10.707 13.6633 11.629 13.2993C11.9303 13.1806 12.2039 13.0012 12.4329 12.7722C12.6619 12.5432 12.8413 12.2696 12.96 11.9683Z" fill="#919EAB"/>
+                        </svg>
+                    </a>
+                    <!--Youtube-->
+                    <a href="#">
+                        <svg width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.2 2.72029C17.557 4.06029 17.557 6.85529 17.557 6.85529C17.557 6.85529 17.557 9.65028 17.2 10.9903C17.1029 11.3506 16.912 11.6787 16.6467 11.9412C16.3814 12.2036 16.0513 12.391 15.69 12.4843C14.36 12.8443 9.022 12.8443 9.022 12.8443C9.022 12.8443 3.685 12.8443 2.354 12.4843C1.99295 12.3905 1.66313 12.2029 1.39795 11.9405C1.13277 11.6781 0.941663 11.3503 0.844 10.9903C0.5 9.64929 0.5 6.85429 0.5 6.85429C0.5 6.85429 0.5 4.05929 0.857 2.71929C1.053 1.97929 1.632 1.39929 2.367 1.19929C3.696 0.842285 9.033 0.842285 9.033 0.842285C9.033 0.842285 14.37 0.842285 15.7 1.20229C16.434 1.40029 17.013 1.98229 17.21 2.72229L17.2 2.72029ZM7.288 9.39229L11.748 6.85429L7.288 4.31629V9.39229Z" fill="#919EAB"/>
+                        </svg>
+                    </a>
+                    <!--LinkedIn-->
+                    <a href="#">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.85795 15.3423V5.32827H0.757948V15.3423H3.85795ZM2.29995 3.96227C3.29395 3.96227 4.09995 3.13827 4.09995 2.14427C4.09995 1.9077 4.05335 1.67344 3.96282 1.45487C3.87228 1.2363 3.73959 1.03771 3.5723 0.870421C3.40502 0.703136 3.20642 0.570438 2.98785 0.479904C2.76928 0.389371 2.53502 0.342773 2.29845 0.342773C2.06187 0.342773 1.82761 0.389371 1.60904 0.479904C1.39048 0.570438 1.19188 0.703136 1.0246 0.870421C0.857311 1.03771 0.724613 1.2363 0.634079 1.45487C0.543545 1.67344 0.496948 1.9077 0.496948 2.14427C0.499948 3.13827 1.30695 3.96227 2.29995 3.96227ZM15.5029 15.3423H12.3959L12.3949 10.2143C12.3849 9.10027 12.2589 7.81627 10.7789 7.81627C9.16195 7.81627 8.91395 9.07827 8.91395 10.3843V15.3423H5.80695V5.32827H8.79995V6.69427H8.84395C9.25895 5.90727 10.2739 5.07727 11.7869 5.07727C14.9339 5.07727 15.5139 7.15027 15.5139 9.84227V15.3423H15.5029Z" fill="#919EAB"/>
+                        </svg>
+                    </a>
+                    <!--Spotify-->
+                    <a href="#">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0.342285C6.01088 0.342285 4.10322 1.13246 2.6967 2.53898C1.29018 3.94551 0.5 5.85316 0.5 7.84229C0.5 9.83141 1.29018 11.7391 2.6967 13.1456C4.10322 14.5521 6.01088 15.3423 8 15.3423C9.98912 15.3423 11.8968 14.5521 13.3033 13.1456C14.7098 11.7391 15.5 9.83141 15.5 7.84229C15.5 5.85316 14.7098 3.94551 13.3033 2.53898C11.8968 1.13246 9.98912 0.342285 8 0.342285V0.342285ZM11.44 11.1593C11.4087 11.2125 11.367 11.2588 11.3174 11.2956C11.2678 11.3323 11.2114 11.3587 11.1514 11.3731C11.0914 11.3876 11.0291 11.3898 10.9682 11.3797C10.9073 11.3696 10.8491 11.3474 10.797 11.3143C9.037 10.2383 6.819 9.99428 4.209 10.5913C4.08811 10.6182 3.96146 10.5964 3.8566 10.5305C3.75173 10.4646 3.67713 10.3599 3.649 10.2393C3.63525 10.1794 3.63345 10.1174 3.6437 10.0568C3.65396 9.99621 3.67607 9.93825 3.70877 9.88623C3.74147 9.8342 3.78412 9.78915 3.83426 9.75363C3.88441 9.71812 3.94107 9.69286 4.001 9.67929C6.858 9.02629 9.309 9.30729 11.286 10.5163C11.506 10.6513 11.586 10.9393 11.441 11.1593H11.44ZM12.358 9.11728C12.2769 9.24943 12.1467 9.34398 11.9959 9.38016C11.8452 9.41635 11.6862 9.39122 11.554 9.31029C9.538 8.07029 6.464 7.71229 4.08 8.43629C3.77 8.52929 3.444 8.35629 3.35 8.03628C3.256 7.71628 3.43 7.40129 3.75 7.30629C6.474 6.48029 9.85 6.88029 12.175 8.30329C12.45 8.47328 12.537 8.83329 12.368 9.10729L12.358 9.11728ZM12.438 6.99028C10.02 5.55429 6.03 5.42229 3.723 6.12229C3.54491 6.17626 3.35267 6.15727 3.18857 6.0695C3.02448 5.98174 2.90197 5.83238 2.848 5.65428C2.79403 5.47619 2.81301 5.28395 2.90078 5.11986C2.98855 4.95576 3.13791 4.83326 3.316 4.77928C5.966 3.97529 10.369 4.12929 13.153 5.78229C13.2323 5.8293 13.3015 5.89146 13.3567 5.96522C13.4119 6.03899 13.4521 6.12291 13.4749 6.21219C13.4977 6.30147 13.5027 6.39437 13.4896 6.48558C13.4765 6.5768 13.4455 6.66453 13.3985 6.74379C13.3515 6.82304 13.2893 6.89225 13.2156 6.94748C13.1418 7.00271 13.0579 7.04287 12.9686 7.06567C12.8793 7.08846 12.7864 7.09345 12.6952 7.08035C12.604 7.06724 12.5163 7.0363 12.437 6.98928L12.438 6.99028Z" fill="#919EAB"/>
+                        </svg>
+                    </a>
+                    <!--FM-->
+                    <a href="#">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M6.99997 2.85742C5.80548 2.86024 4.66072 3.33951 3.81609 4.1904C2.97146 5.04129 2.49571 6.19453 2.49291 7.39787C2.49291 8.99787 3.30909 10.389 4.54174 11.2005V9.98987C4.19307 9.6559 3.91549 9.25397 3.72588 8.80852C3.53627 8.36308 3.4386 7.88343 3.4388 7.39876C3.43973 6.44757 3.81522 5.5356 4.48287 4.86301C5.15052 4.19042 6.05578 3.81214 6.99997 3.8112C7.94386 3.81238 8.84876 4.19063 9.51619 4.86301C10.1836 5.53539 10.5591 6.44699 10.5603 7.39787C10.5603 8.41653 10.1367 9.33565 9.45732 9.98898V11.1996C10.0852 10.7868 10.6012 10.2231 10.9589 9.55922C11.3166 8.89537 11.5046 8.1523 11.5061 7.39698C11.5034 6.19364 11.0276 5.0404 10.183 4.18951C9.33834 3.33862 8.19358 2.85935 6.99909 2.85653L6.99997 2.85742ZM6.99997 0.731201C5.24558 0.733553 3.56371 1.43669 2.32317 2.68642C1.08262 3.93615 0.384659 5.63048 0.382324 7.39787C0.382324 10.293 2.22468 12.7632 4.78968 13.6823L4.71203 12.7045C3.50676 12.171 2.51997 11.2366 1.91685 10.0578C1.31372 8.8789 1.13086 7.5271 1.39888 6.22864C1.66689 4.93018 2.36952 3.76386 3.38914 2.92492C4.40876 2.08598 5.6835 1.62534 6.99997 1.62009C8.52035 1.62244 9.97779 2.23192 11.0529 3.31496C12.1279 4.39799 12.7329 5.86623 12.7353 7.39787C12.7341 8.52293 12.4074 9.62325 11.7951 10.5642C11.1828 11.5051 10.3115 12.2458 9.28791 12.6956L9.21027 13.6734C10.4987 13.2146 11.6143 12.3648 12.4035 11.241C13.1928 10.1171 13.617 8.77453 13.6176 7.39787C13.6153 5.63048 12.9173 3.93615 11.6768 2.68642C10.4362 1.43669 8.75436 0.733553 6.99997 0.731201Z" fill="#919EAB"/>
+                            <path d="M6.99997 0.731201C5.24558 0.733553 3.56371 1.43669 2.32317 2.68642C1.08262 3.93615 0.384659 5.63048 0.382324 7.39787C0.382324 10.293 2.22468 12.7632 4.78968 13.6823L4.71203 12.7045C3.50676 12.171 2.51997 11.2366 1.91685 10.0578C1.31372 8.8789 1.13086 7.5271 1.39888 6.22864C1.66689 4.93018 2.36952 3.76386 3.38914 2.92492C4.40876 2.08598 5.6835 1.62534 6.99997 1.62009C8.52035 1.62244 9.97779 2.23192 11.0529 3.31496C12.1279 4.39799 12.7329 5.86623 12.7353 7.39787C12.7341 8.52293 12.4074 9.62325 11.7951 10.5642C11.1828 11.5051 10.3115 12.2458 9.28791 12.6956L9.21027 13.6734C10.4987 13.2146 11.6143 12.3648 12.4035 11.241C13.1928 10.1171 13.617 8.77453 13.6176 7.39787C13.6153 5.63048 12.9173 3.93615 11.6768 2.68642C10.4362 1.43669 8.75436 0.733553 6.99997 0.731201M6.99997 2.85742C5.80548 2.86024 4.66072 3.33951 3.81609 4.1904C2.97146 5.04129 2.49571 6.19453 2.49291 7.39787C2.49291 8.99787 3.30909 10.389 4.54174 11.2005V9.98987C4.19307 9.6559 3.91549 9.25397 3.72588 8.80852C3.53627 8.36308 3.4386 7.88343 3.4388 7.39876C3.43973 6.44757 3.81522 5.5356 4.48287 4.86301C5.15052 4.19042 6.05578 3.81214 6.99997 3.8112C7.94386 3.81238 8.84876 4.19063 9.51619 4.86301C10.1836 5.53539 10.5591 6.44699 10.5603 7.39787C10.5603 8.41653 10.1367 9.33565 9.45732 9.98898V11.1996C10.0852 10.7868 10.6012 10.2231 10.9589 9.55922C11.3166 8.89537 11.5046 8.1523 11.5061 7.39698C11.5034 6.19364 11.0276 5.0404 10.183 4.18951C9.33834 3.33862 8.19358 2.85935 6.99909 2.85653L6.99997 2.85742Z" stroke="#919EAB" stroke-width="0.3"/>
+                        </svg>
+                    </a>
+                    <!--Soundcloud-->
+                    <a href="#">
+                        <svg width="29" height="13" viewBox="0 0 29 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24.733 6.04429C24.267 6.04429 23.833 6.13829 23.418 6.30829C23.2847 4.8161 22.5979 3.42777 21.4928 2.41628C20.3877 1.4048 18.9441 0.843331 17.446 0.842285C16.7026 0.843348 15.9657 0.980965 15.272 1.24829C15.015 1.34829 14.947 1.44829 14.945 1.64829V12.4353C14.9464 12.5356 14.9845 12.6319 15.0522 12.706C15.1198 12.7801 15.2122 12.8268 15.312 12.8373L24.732 12.8433C25.6334 12.843 26.4978 12.4848 27.1352 11.8474C27.7725 11.2101 28.1307 10.3457 28.131 9.44429C28.1307 8.5429 27.7725 7.6785 27.1352 7.04112C26.4978 6.40374 25.6334 6.04555 24.732 6.04529L24.733 6.04429ZM14.25 1.63829C14.1511 1.63957 14.0566 1.67936 13.9866 1.74919C13.9166 1.81903 13.8766 1.91341 13.875 2.01229L13.722 9.66829L13.875 12.4483C13.878 12.6513 14.045 12.8183 14.25 12.8183C14.455 12.8183 14.62 12.6503 14.624 12.4453V12.4483L14.791 9.66829L14.624 2.01129C14.6227 1.91259 14.5828 1.81832 14.513 1.74862C14.4431 1.67892 14.3487 1.63932 14.25 1.63829ZM9.9 12.5503V12.5493L10.096 9.66629L9.9 3.38229C9.895 3.22629 9.772 3.10429 9.62 3.10429C9.468 3.10429 9.344 3.22629 9.34 3.38229L9.166 9.66529L9.34 12.5493C9.34105 12.6229 9.37101 12.693 9.42341 12.7447C9.47581 12.7963 9.54643 12.8253 9.62 12.8253C9.69351 12.8245 9.76383 12.7952 9.81609 12.7435C9.86835 12.6918 9.89845 12.6218 9.9 12.5483V12.5493V12.5503ZM7.35 12.8263C7.474 12.8263 7.577 12.7263 7.583 12.5963L7.811 9.66629L7.583 4.06629C7.577 3.93629 7.475 3.83629 7.35 3.83629C7.225 3.83629 7.123 3.93629 7.117 4.06629L6.915 9.66629L7.117 12.5983C7.122 12.7263 7.224 12.8283 7.35 12.8283V12.8263ZM11.925 3.44229C11.8384 3.44228 11.7552 3.47657 11.6938 3.53765C11.6323 3.59873 11.5975 3.68164 11.597 3.76829L11.451 9.66829L11.597 12.5063C11.6019 12.59 11.6386 12.6687 11.6997 12.7261C11.7608 12.7836 11.8416 12.8155 11.9254 12.8152C12.0093 12.815 12.0899 12.7826 12.1506 12.7248C12.2114 12.6669 12.2476 12.588 12.252 12.5043V12.5063L12.416 9.66629L12.252 3.76629C12.2515 3.67991 12.2168 3.59725 12.1555 3.53635C12.0943 3.47546 12.0114 3.44128 11.925 3.44129V3.44229ZM2.92 12.6353C2.992 12.6353 3.05 12.5783 3.058 12.5003L3.35 9.66228L3.057 6.71829C3.047 6.63829 2.99 6.58329 2.917 6.58329C2.844 6.58329 2.787 6.64029 2.777 6.71829L2.519 9.66228L2.777 12.4983C2.784 12.5783 2.843 12.6343 2.917 12.6343L2.92 12.6353ZM5.118 12.7973C5.218 12.7973 5.296 12.7173 5.303 12.6153L5.563 9.66529L5.303 6.85828C5.296 6.75428 5.216 6.67629 5.118 6.67629C5.02 6.67629 4.938 6.75629 4.932 6.85929L4.702 9.66529L4.932 12.6153C4.93329 12.6639 4.95339 12.7102 4.98808 12.7443C5.02277 12.7784 5.06934 12.7978 5.118 12.7983V12.7973ZM10.768 12.8243C10.933 12.8243 11.068 12.6913 11.071 12.5223L11.251 9.66529L11.071 3.54229C11.067 3.37229 10.933 3.24029 10.768 3.24029C10.603 3.24029 10.468 3.37329 10.464 3.54229L10.304 9.66529L10.464 12.5213C10.467 12.6893 10.601 12.8213 10.767 12.8213L10.768 12.8243ZM13.09 12.8343C13.29 12.8343 13.437 12.6773 13.44 12.4843V12.4863V12.4843L13.588 9.66629L13.44 2.64629C13.437 2.45429 13.28 2.29629 13.09 2.29629C12.9 2.29629 12.742 2.45329 12.74 2.64629L12.608 9.66329L12.74 12.4853C12.743 12.6853 12.9 12.8323 13.09 12.8323V12.8343ZM8.48 12.8203C8.54723 12.8193 8.61146 12.7922 8.65919 12.7449C8.70693 12.6975 8.73446 12.6335 8.736 12.5663L8.948 9.66629L8.736 3.58829C8.73446 3.52106 8.70693 3.45705 8.65919 3.40969C8.61146 3.36233 8.54723 3.3353 8.48 3.33429C8.41244 3.3348 8.34777 3.36181 8.29991 3.40949C8.25204 3.45717 8.22478 3.52173 8.224 3.58929L8.036 9.66728L8.224 12.5693C8.2258 12.6363 8.25344 12.7001 8.30115 12.7472C8.34885 12.7944 8.41293 12.8213 8.48 12.8223V12.8203ZM4.014 6.47829C3.928 6.47829 3.859 6.54629 3.852 6.63829L3.608 9.66228L3.852 12.5893C3.859 12.6893 3.929 12.7493 4.014 12.7493C4.099 12.7493 4.168 12.6793 4.176 12.5893L4.453 9.66228L4.176 6.63629C4.168 6.54629 4.099 6.47628 4.014 6.47628V6.47829ZM6.23 4.89229C6.17505 4.89304 6.12252 4.915 6.08339 4.95357C6.04425 4.99215 6.02154 5.04436 6.02 5.09929L5.804 9.66529L6.02 12.6153C6.025 12.7303 6.117 12.8213 6.23 12.8213C6.343 12.8213 6.432 12.7313 6.44 12.6143L6.685 9.66428L6.44 5.09829C6.43797 5.04352 6.41511 4.99159 6.37608 4.95311C6.33705 4.91464 6.28479 4.89252 6.23 4.89128V4.89229ZM1.95 7.18229C1.94 7.11629 1.893 7.07229 1.835 7.07229C1.777 7.07229 1.728 7.11929 1.72 7.18229L1.448 9.66228L1.72 12.0893C1.728 12.1543 1.776 12.2013 1.835 12.2013C1.894 12.2013 1.94 12.1553 1.949 12.0913L2.259 9.66428L1.949 7.18429L1.95 7.18229ZM0.814 8.02228C0.756 8.02228 0.711 8.06729 0.704 8.13029L0.5 9.66228L0.702 11.1723C0.71 11.2363 0.755 11.2803 0.812 11.2803C0.869 11.2803 0.912 11.2363 0.912 11.1733L1.152 9.66329L0.912 8.12828C0.902 8.06528 0.857 8.02029 0.812 8.02029L0.814 8.02228Z" fill="#919EAB"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+</body>
+<!--Jquery 3.6.0-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--Bootstrap js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js"
+    integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
